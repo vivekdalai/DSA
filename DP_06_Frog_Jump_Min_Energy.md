@@ -72,14 +72,14 @@ class FrogJumpMemo {
         return solve(n - 1, height, dp);
     }
 
-    private int solve(int i, int[] h, int[] dp) {
+    private int solve(int i, int[] height, int[] dp) {
         if (i == 0) return 0;
         if (dp[i] != -1) return dp[i];
 
-        int cost1 = solve(i - 1, h, dp) + Math.abs(h[i] - h[i - 1]);
+        int cost1 = solve(i - 1, height, dp) + Math.abs(height[i] - height[i - 1]);
         int cost2 = Integer.MAX_VALUE;
         if (i > 1) {
-            cost2 = solve(i - 2, h, dp) + Math.abs(h[i] - h[i - 2]);
+            cost2 = solve(i - 2, height, dp) + Math.abs(height[i] - height[i - 2]);
         }
         return dp[i] = Math.min(cost1, cost2);
     }
