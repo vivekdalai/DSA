@@ -126,8 +126,11 @@ class GeeksTrainingTab {
         dp[0][3] = Math.max(arr[0][0], Math.max(arr[0][1], arr[0][2])); // last=3 (no restriction)
 
         for (int day = 1; day < n; day++) {
+            // last task
             for (int last = 0; last < 4; last++) {
                 dp[day][last] = 0;
+
+                //there are 3 choices of task for each day.
                 for (int task = 0; task < 3; task++) {
                     if (task != last) {
                         int points = arr[day][task] + dp[day - 1][task];
