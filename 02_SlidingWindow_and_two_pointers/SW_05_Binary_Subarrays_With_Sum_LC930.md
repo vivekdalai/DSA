@@ -148,4 +148,7 @@ Same idea is used in:
 
 ------------------------------------------------------------------------
 
+use case -> if all elements in num = 0 eg, nums = [0,0,0,0,0], goal = 0;
+expected ==> 15
+
 # End of Notes
