@@ -22,6 +22,15 @@ If there is more than one answer, return any of them.
     Input: root = [2,1,3]
     Output: [2,1,3]
 
+
+<!-- leetcode-images-start -->
+**Official LeetCode Images**
+
+![LeetCode image 1](https://assets.leetcode.com/uploads/2021/08/10/balance1-tree.jpg)
+
+![LeetCode image 2](https://assets.leetcode.com/uploads/2021/08/10/balanced2-tree.jpg)
+
+<!-- leetcode-images-end -->
 ------------------------------------------------------------------------
 
 ## 2. Why Inorder Solves Half The Problem

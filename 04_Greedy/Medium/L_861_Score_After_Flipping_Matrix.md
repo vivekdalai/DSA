@@ -26,6 +26,13 @@ Return the maximum possible total score of all rows.
     Input: grid = [[0]]
     Output: 1
 
+
+<!-- leetcode-images-start -->
+**Official LeetCode Image**
+
+![LeetCode image 1](https://assets.leetcode.com/uploads/2021/07/23/lc-toogle1.jpg)
+
+<!-- leetcode-images-end -->
 ------------------------------------------------------------------------
 
 ## 2. Most Important Bit First

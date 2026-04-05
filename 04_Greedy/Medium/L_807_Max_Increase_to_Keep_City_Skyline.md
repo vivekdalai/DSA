@@ -24,6 +24,13 @@ Return the maximum total sum by which the buildings can be increased.
     Input: grid = [[1,2],[3,4]]
     Output: 1
 
+
+<!-- leetcode-images-start -->
+**Official LeetCode Image**
+
+![LeetCode image 1](https://assets.leetcode.com/uploads/2021/06/21/807-ex1.png)
+
+<!-- leetcode-images-end -->
 ------------------------------------------------------------------------
 
 ## 2. Row/Column Cap Intuition

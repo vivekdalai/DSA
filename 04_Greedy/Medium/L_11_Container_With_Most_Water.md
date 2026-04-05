@@ -30,6 +30,13 @@ The best pair is at indices `1` and `8`:
     Input: height = [1,1]
     Output: 1
 
+
+<!-- leetcode-images-start -->
+**Official LeetCode Image**
+
+![LeetCode image 1](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg)
+
+<!-- leetcode-images-end -->
 ------------------------------------------------------------------------
 
 ## 2. Two-Pointer Intuition
