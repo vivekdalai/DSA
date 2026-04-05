@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/task-scheduler/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 You are given tasks represented by capital letters and a non-negative cooling interval `n`.

@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/di-string-match/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 Given a string `s` of length `n` containing only `I` and `D`, construct a permutation of numbers from `0` to `n` such that:

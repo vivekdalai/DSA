@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/monotone-increasing-digits/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 Given an integer `n`, return the largest number less than or equal to `n` whose digits are monotone increasing.

@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/gas-station/description/
+<!-- leetcode-link-end -->
 ## 📘 1. LeetCode Question Statement
 
 There are `n` gas stations along a **circular route**, where `gas[i]` is the amount of gas available at station `i`.

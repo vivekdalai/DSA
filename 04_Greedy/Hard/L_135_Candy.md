@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/candy/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 There are `n` children standing in a line.

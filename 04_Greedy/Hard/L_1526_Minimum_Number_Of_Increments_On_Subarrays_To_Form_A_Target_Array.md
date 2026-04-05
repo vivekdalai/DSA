@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 You start with an array of zeros.

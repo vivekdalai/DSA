@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/balance-a-binary-search-tree/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 Given the root of a binary search tree, return a balanced BST containing the same node values.

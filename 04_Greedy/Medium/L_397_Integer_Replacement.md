@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/integer-replacement/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 Given a positive integer `n`, you may do:

@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/maximum-distance-in-arrays/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 You are given `arrays`, where each inner array is sorted in ascending order.

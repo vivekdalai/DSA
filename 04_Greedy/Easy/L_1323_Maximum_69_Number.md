@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/maximum-69-number/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 You are given a positive integer containing only digits `6` and `9`.

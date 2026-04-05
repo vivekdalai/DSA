@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 You are given a string `time` in the format `hh:mm`, where some digits may be `'?'`.

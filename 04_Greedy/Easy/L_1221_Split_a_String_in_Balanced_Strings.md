@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/split-a-string-in-balanced-strings/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 A balanced string has the same number of `L` and `R` characters.

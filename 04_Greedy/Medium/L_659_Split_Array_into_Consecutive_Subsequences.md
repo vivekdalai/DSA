@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/split-array-into-consecutive-subsequences/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 Given a sorted integer array `nums`, return `true` if it can be split into one or more subsequences such that:

@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/break-a-palindrome/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 You are given a palindromic string `palindrome`.

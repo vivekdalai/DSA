@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 Given an array `arr`, return `true` if it can be partitioned into three non-empty contiguous parts with equal sum.

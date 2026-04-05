@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/group-the-people-given-the-group-size-they-belong-to/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 You are given an array `groupSizes`, where `groupSizes[i]` is the required group size for person `i`.

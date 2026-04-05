@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/rabbits-in-forest/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 Each rabbit answers how many other rabbits have the same color as itself.

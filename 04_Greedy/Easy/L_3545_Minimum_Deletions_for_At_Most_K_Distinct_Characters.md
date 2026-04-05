@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/minimum-deletions-for-at-most-k-distinct-characters/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 You are given a string `s` and an integer `k`.

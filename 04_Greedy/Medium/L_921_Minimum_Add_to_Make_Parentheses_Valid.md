@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 Given a parentheses string `s`, return the minimum number of parentheses that must be added to make it valid.

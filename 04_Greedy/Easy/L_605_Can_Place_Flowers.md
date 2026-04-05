@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/can-place-flowers/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 You are given a flowerbed array where:

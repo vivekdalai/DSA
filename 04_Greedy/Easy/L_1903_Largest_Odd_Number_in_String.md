@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/largest-odd-number-in-string/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 You are given a numeric string `s`.

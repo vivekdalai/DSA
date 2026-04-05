@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/partition-labels/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 Given a string `s`, partition it into as many parts as possible so that each letter appears in at most one part.

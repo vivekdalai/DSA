@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/increasing-triplet-subsequence/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 Given an integer array `nums`, return `true` if there exists an increasing triplet subsequence.

@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/broken-calculator/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 On a broken calculator, you can do only two operations:

@@ -6,6 +6,10 @@
 
 ------------------------------------------------------------------------
 
+
+<!-- leetcode-link-start -->
+**LeetCode Link:** https://leetcode.com/problems/minimum-operations-to-make-the-array-increasing/description/
+<!-- leetcode-link-end -->
 ## 1. LeetCode Question Statement
 
 You are given an integer array `nums`.
