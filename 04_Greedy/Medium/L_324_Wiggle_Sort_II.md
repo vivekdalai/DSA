@@ -117,6 +117,14 @@ public static void wiggleSort(int[] nums) {
 private static int newIndex(int index, int n) {
     return (1 + 2 * index) % (n | 1);
 }
+
+private static int findMedian(int[] nums, int left, int right, int medianIdx) {
+    int pivot = findPivot(nums,left,right);
+
+    if(pivot==medianIdx) return nums[pivot];
+    else if (pivot>medianIdx) return findMedian(nums,left,pivot-1, medianIdx);
+    else return findMedian(nums,pivot+1,right, medianIdx);
+}
 ```
 
 ------------------------------------------------------------------------
