@@ -51,6 +51,23 @@ Important:
 
 ## 💻 4. Java Implementation
 
+This problem is easier if we do not try to build the answer in one complicated traversal.
+
+Instead, split it into clear parts:
+- root
+- left boundary
+- leaf nodes
+- right boundary
+
+Each part has a separate role:
+- left boundary gives the outer path on the left side
+- leaves give the bottom boundary from left to right
+- right boundary gives the outer path on the right side, but it must be added in reverse
+
+The main care point is avoiding duplicates:
+- leaf nodes should not be added again in left or right boundary
+- root should not be repeated
+
 ```java
 import java.util.ArrayList;
 import java.util.Collections;

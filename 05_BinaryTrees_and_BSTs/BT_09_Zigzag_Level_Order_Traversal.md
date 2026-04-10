@@ -58,6 +58,21 @@ For each level:
 
 ## 💻 4. Java Implementation
 
+This is almost the same as normal level order traversal.
+
+The only extra idea is:
+- for one level, store values from left to right
+- for the next level, store values from right to left
+
+The traversal itself does not change:
+- we still use BFS
+- we still push children in normal left-then-right order
+
+Only the way we place values into the current level list changes.
+That is why a `LinkedList` is convenient:
+- `addLast()` for left-to-right
+- `addFirst()` for right-to-left
+
 ```java
 import java.util.ArrayList;
 import java.util.LinkedList;
