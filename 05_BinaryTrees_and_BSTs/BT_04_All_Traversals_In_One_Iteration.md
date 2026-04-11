@@ -50,6 +50,23 @@ For a node:
 
 ## 💻 4. Java Implementation
 
+Before the code, think of recursion as visiting the same node in three phases:
+- first time we reach the node -> preorder position
+- after finishing left subtree -> inorder position
+- after finishing right subtree -> postorder position
+
+The iterative solution simulates these three phases explicitly using a stack.
+
+For each stack entry, we store:
+- the node
+- the current state telling us which phase we are in
+
+So instead of relying on the system call stack, we manually remember:
+- which node we are processing
+- whether it is time for preorder, inorder, or postorder work
+
+That is why the same node may be pushed back multiple times with different states.
+
 ```java
 import java.util.ArrayList;
 import java.util.Arrays;

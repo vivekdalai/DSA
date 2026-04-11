@@ -56,6 +56,24 @@ Return upward:
 
 ## 💻 4. Java Implementation
 
+This problem becomes easier if we separate two different questions at every node.
+
+Question 1:
+- what is the best path sum that can be extended upward to the parent?
+
+Question 2:
+- what is the best complete path whose highest point is the current node?
+
+These are not the same:
+- for the parent, we can return only one side
+- for the global answer, we are allowed to use both left and right sides together through the current node
+
+That is why the solution:
+- returns one-branch gain upward
+- updates the full path answer at every node
+
+Negative contributions are ignored because taking them would only reduce the path sum.
+
 ```java
 class TreeNode {
     int val;

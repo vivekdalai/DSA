@@ -47,6 +47,20 @@ For each node:
 
 ## 💻 4. Java Implementation
 
+The main insight is that every node can act as the "middle point" of a possible longest path.
+
+For any node:
+- the longest path going through it will use
+  - the deepest path from the left subtree
+  - the deepest path from the right subtree
+
+So while computing height for each node, we can also calculate a diameter candidate:
+- `leftHeight + rightHeight`
+
+That means one traversal can do both jobs:
+- return height upward
+- keep updating the best diameter found so far
+
 ```java
 class TreeNode {
     int val;

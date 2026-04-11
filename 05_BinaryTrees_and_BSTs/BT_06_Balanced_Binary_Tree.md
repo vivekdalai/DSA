@@ -51,6 +51,14 @@ For optimized helper:
 
 ## 💻 4A. Brute Force Java Implementation
 
+The brute force idea is straightforward:
+- for every node, compute the height of the left subtree
+- compute the height of the right subtree
+- check whether their difference is at most 1
+- then repeat the same check for left and right subtrees
+
+This is easy to understand, but it is inefficient because the same subtree heights get recomputed many times.
+
 ```java
 class TreeNode {
     int val;
@@ -95,6 +103,18 @@ Complexity:
 ------------------------------------------------------------------------
 
 ## 💻 4B. Optimized Java Implementation
+
+The optimized approach combines both tasks in one traversal:
+- compute height
+- detect whether the subtree is balanced
+
+The trick is to return:
+- actual height if the subtree is balanced
+- `-1` if the subtree is already unbalanced
+
+So once any subtree becomes unbalanced, that `-1` is propagated upward immediately, and no separate balance check is needed later.
+
+This is why the optimized solution is both clean and efficient.
 
 ```java
 class BalancedBinaryTreeOptimal {

@@ -60,6 +60,21 @@ The iterative queue-based version is the standard approach.
 
 ## 💻 4A. Iterative Java Implementation
 
+Before the code, the key idea is to process the tree one level at a time.
+
+A queue is perfect for this because it works in FIFO order:
+- nodes that are discovered first are processed first
+- this naturally matches level-by-level traversal
+
+How one level is handled:
+- first, store the current `queue.size()`
+- that size tells us how many nodes belong to the current level
+- process exactly those many nodes
+- while processing them, push their children into the queue
+- those children automatically become the next level
+
+So the queue always contains nodes in the order they should be processed, and the `queue.size()` snapshot helps us separate one level from the next.
+
 ```java
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -119,6 +134,16 @@ Complexity:
 ------------------------------------------------------------------------
 
 ## 💻 4B. Recursive Java Implementation
+
+The recursive approach does not use a queue. Instead, it uses the current depth or level as extra information during DFS.
+
+The idea is:
+- when we visit a node, we already know which level it belongs to
+- if the answer list does not yet contain a list for that level, create one
+- then add the current node to that level's list
+- recurse to left and right children with `level + 1`
+
+So even though traversal is depth-first internally, we still build the output in level-order form because every node is placed into its correct level bucket.
 
 ```java
 import java.util.ArrayList;

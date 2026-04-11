@@ -67,6 +67,15 @@ Why push right first:
 
 ## 💻 4A. Recursive Java Implementation
 
+The recursive approach is the most natural for preorder traversal.
+
+The idea is:
+- visit the current node immediately
+- then solve the same problem for the left subtree
+- then solve it for the right subtree
+
+This matches preorder exactly because recursion lets us process the root first, then fully explore left, then right.
+
 ```java
 import java.util.ArrayList;
 
@@ -107,6 +116,15 @@ Complexity:
 
 ## 💻 4B. Iterative Java Implementation
 
+The iterative version uses a stack to simulate recursion.
+
+The idea is:
+- pop the current node and visit it
+- then push its children so they can be processed later
+
+Since stack is LIFO, we push the **right child first** and the **left child second**.
+This ensures the left child comes out first on the next step, which preserves Root -> Left -> Right order.
+
 ```java
 import java.util.ArrayList;
 import java.util.Stack;
@@ -145,6 +163,17 @@ Complexity:
 ------------------------------------------------------------------------
 
 ## 💻 4C. Morris Preorder Traversal
+
+Morris preorder removes the need for recursion or an explicit stack by creating temporary threads in the tree.
+
+The key idea is:
+- if there is no left child, visit the current node and move right
+- if there is a left child, find the inorder predecessor in the left subtree
+- on the first visit, record the current node, create a temporary thread, and move left
+- on the second visit, remove the thread and move right
+
+The important preorder difference is:
+- we visit the node the **first time** we encounter it, because preorder wants Root first
 
 ```java
 import java.util.ArrayList;

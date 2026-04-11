@@ -149,6 +149,7 @@ enum TrafficLight {
 
    private final int duration;
 
+   //passes value to constructor while initialisation -> RED(30)
    TrafficLight(int duration) {
       this.duration = duration;
    }
@@ -170,6 +171,8 @@ enum TrafficLight {
 
    public void display() {
       // Print: "COLOR (Xs)" e.g. "RED (30s)"
+      //this.name() --> built in method.
+      //this.duration --> created property in constructor
       System.out.println(this.name() + " (" + this.duration + "s)");
    }
 }

@@ -51,6 +51,15 @@ Transition:
 
 ## 💻 4A. Recursive Java Implementation
 
+The recursive solution works bottom-up.
+
+The idea is:
+- first find the height of the left subtree
+- then find the height of the right subtree
+- the current node's height is `1 + max(leftHeight, rightHeight)`
+
+So each node asks its children for their heights, and then builds its own answer from them.
+
 ```java
 class TreeNode {
     int val;
@@ -80,6 +89,15 @@ Complexity:
 ------------------------------------------------------------------------
 
 ## 💻 4B. Level Order Java Implementation
+
+The BFS approach counts how many levels exist in the tree.
+
+The idea is:
+- use a queue for level order traversal
+- process all nodes of one level together
+- after one full level is processed, increment height by 1
+
+So height becomes the total number of levels we were able to process.
 
 ```java
 import java.util.LinkedList;
