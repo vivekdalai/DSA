@@ -17,5 +17,11 @@ public class Main {
         System.out.println("current stock: " + iPhoneObservable.getStockCount());
         System.out.println("Updating stock to 100");
         iPhoneObservable.setStockCount(100);
+
+        iPhoneObservable.remove(emailNotificationObserver2);
+
+        iPhoneObservable.setStockCount(0);
+        System.out.println("New stock added");
+        iPhoneObservable.setStockCount(10);
     }
 }
