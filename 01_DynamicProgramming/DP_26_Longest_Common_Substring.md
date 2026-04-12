@@ -20,6 +20,11 @@ Example:
 - `s2 = "acjkp"`
 - Longest common substring is `"cjk"` with length `3`.
 
+Why this is a different DP from LCS:
+- In LCS, a mismatch still leaves useful work to do, so we take `max(top, left)`.
+- In Longest Common Substring, a mismatch kills the current contiguous run, so the value becomes `0`.
+- That single change completely changes the state meaning.
+
 ------------------------------------------------------------------------
 
 ## 2. State Definition
@@ -43,6 +48,13 @@ Why this state is correct:
 Important consequence:
 - The answer is not necessarily `dp[n][m]`.
 - The best substring can end anywhere, so we take the maximum over all cells.
+
+Quick compare:
+
+| Problem | `dp[i][j]` means | Mismatch handling | Final answer |
+|---|---|---|---|
+| Longest Common Subsequence | best length using prefixes | `max(top, left)` | usually `dp[n][m]` |
+| Longest Common Substring | matching streak ending exactly at `(i-1, j-1)` | reset to `0` | max over entire table |
 
 ------------------------------------------------------------------------
 
@@ -68,6 +80,11 @@ Why only the diagonal matters:
 Track while solving:
 - `maxLen` = best length seen so far
 - `endIndex` in `s1` if we want to reconstruct one actual substring
+
+Mental model:
+- diagonal = continue the current matching streak
+- zero = streak broken
+- global maximum = best streak seen anywhere
 
 ------------------------------------------------------------------------
 
@@ -128,6 +145,10 @@ Why this version is useful:
 - It makes the recurrence very explicit.
 - It is a nice bridge between plain recursion and tabulation.
 - Bottom-up is usually preferred in interviews and production because it avoids recursion overhead.
+
+Important note:
+- Unlike many top-down DP problems, calling only `solve(n, m)` is not enough.
+- We must evaluate all end positions because the best substring may finish anywhere.
 
 ------------------------------------------------------------------------
 
@@ -203,6 +224,10 @@ class LongestCommonSubstring {
 }
 ```
 
+If multiple longest common substrings exist:
+- this returns the one whose ending position is found first by the scan order
+- any one valid answer is usually acceptable unless the problem asks for all
+
 ------------------------------------------------------------------------
 
 ## 4D. Space-Optimized (Two Rows)
@@ -260,6 +285,37 @@ Best substring found:
 
 This example is a good reminder that the answer comes from the maximum value anywhere in the table, not just the last cell.
 
+Key non-zero cells:
+
+| `i` | `j` | chars | `dp[i][j]` | meaning |
+|---|---|---|---|---|
+| 1 | 2 | `a == a` | 1 | substring `"a"` |
+| 2 | 3 | `b == b` | 2 | substring `"ab"` |
+| 3 | 4 | `a == a` | 3 | substring `"aba"` |
+| 4 | 1 | `b == b` | 1 | new streak starts |
+| 4 | 3 | `b == b` | 2 | substring `"ab"` ending here |
+| 5 | 4 | `c == c` | 4 | substring `"babc"` |
+
+Mini-table view:
+
+```text
+      b  a  b  c  a
+   0  0  0  0  0  0
+a  0  1  0  0  1
+b  1  0  2  0  0
+a  0  2  0  0  1
+b  1  0  3  0  0
+c  0  0  0  4  0
+```
+
+The maximum value `4` appears at the cell for:
+- `s1[4] = 'c'`
+- `s2[3] = 'c'`
+
+So the substring ends at `i = 5` in `s1`, and:
+- start = `5 - 4 = 1`
+- substring = `s1.substring(1, 5) = "babc"`
+
 ------------------------------------------------------------------------
 
 ## 6. Pattern Recognition
@@ -273,6 +329,8 @@ This example is a good reminder that the answer comes from the maximum value any
 How to identify it quickly:
 - the problem asks for a **contiguous** segment common to both strings
 - the transition talks about a current streak rather than a general best answer so far
+- words like `substring`, `continuous`, `consecutive`, or `common block` are strong hints
+- if mismatch should "restart from here", think of a reset-to-zero DP
 
 ------------------------------------------------------------------------
 
@@ -284,6 +342,7 @@ How to identify it quickly:
 - Do not confuse it with LCS:
   - LCS allows skipping
   - Longest Common Substring resets to `0` on mismatch
+- If reconstructing, store the ending index when `maxLen` improves
 - For very large inputs, prefer the `O(m)` space version when only the length is required
 
 ------------------------------------------------------------------------
@@ -304,6 +363,7 @@ How to identify it quickly:
 - On match: take `1 + diagonal`
 - On mismatch: reset to `0`
 - Maintain a global maximum because the answer can end anywhere
+- If you remember only one thing: `Longest Common Subsequence = max on mismatch`, `Longest Common Substring = 0 on mismatch`
 
 ------------------------------------------------------------------------
 
