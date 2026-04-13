@@ -1,0 +1,6 @@
+.markdown-preview-view pre,
+.markdown-preview-view code,
+pre,
+code {
+    font-family: 'Courier New', monospace !important;
+}
