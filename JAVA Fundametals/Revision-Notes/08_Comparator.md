@@ -134,3 +134,94 @@ Comparator<Pair> rewardThenDeadline = (p1, p2) -> {
 - `Stream.sorted(comparator)`
 - `PriorityQueue` constructor with comparator
 - `TreeSet` and `TreeMap` constructors with comparator
+
+## Example to understand usage 
+```java
+public class Collections_04_comparator_comparable {
+    public static void main(String[] args) {
+        Comparator<Integer> ascComparator = (a, b) -> Integer.compare(a, b);
+        Integer[] arr = {12,56,1,4,7,34,77};
+        Arrays.sort(arr, ascComparator.reversed());
+//        --OR--
+        Arrays.sort(arr, Collections.reverseOrder());
+        System.out.println(Arrays.toString(arr));
+
+        System.out.println("--------------- Custom Comparable ---------------");
+        Item item1 = new Item("Iphone15", 100_000, "Phone");
+        Item item2 = new Item("LG-Monitor", 30_000, "Monitor");
+        Item item3 = new Item("MacBook", 200_000, "Laptop");
+        Item item4 = new Item("Samsung A50", 50_000, "Phone");
+        Item item5 = new Item("OnePlus", 50_000, "Phone");
+        Item item6 = new Item("Samsung S20", 100_000, "Phone");
+
+        List<Item> productList = new ArrayList<>(List.of(item1, item2, item3, item4, item5, item6));
+        System.out.println("initial : " + productList);
+
+        //Collections.sort(productList); // --> calls list.sort(null)
+        productList.sort(null); // passing null as Comparator - will follow natural sorting of element
+                                    // or if Comparable provided in class.
+                                    // Custom class needs to have Comparable if comparator not provided. else Runtime exception
+        System.out.println("sort by price asc : " + productList);
+
+        productList.sort(Collections.reverseOrder()); // Collections.reverseOrder() --> it is a simple comparator function
+        System.out.println("sort by price desc: " + productList);
+
+        System.out.println("------------------- Custom Comparator ------------------");
+        Comparator<Item> typeComparator = (Item a, Item b) -> a.type.compareTo(b.type);
+        productList.sort(typeComparator);
+        System.out.println("sort by type: " + productList);
+
+        System.out.println("---------- Comparator Chaining: type desc, price asc ----------");
+        productList.sort(Comparator.comparing((Item a) -> a.type));
+        System.out.println("sort by type desc : " + productList);
+
+        productList.sort(Comparator.comparing((Item a) -> a.type).reversed()
+                                .thenComparingInt(a -> a.price));
+        System.out.println("sort by type desc and price asc: " + productList);
+
+        productList.sort(Comparator.comparing((Item a) -> a.type).reversed()
+                .thenComparingInt(a -> a.price)
+                .thenComparing(Comparator.comparing((Item a) -> a.name).reversed()));
+        System.out.println("sort by type desc, price asc and name desc: " + productList);
+
+
+        System.out.println("------\n\nsorting list of numbers in desc----------");
+        List<Integer> numbers = new ArrayList<>(List.of(67,12,78,33,56,11,4,79,35));
+//        numbers.sort(null);
+        //cleanest
+        numbers.sort(Comparator.naturalOrder());
+        System.out.println("asc : " + numbers);
+
+        //cleanest -> nums.sort(Collections.reverseOrder());
+        numbers.sort(Comparator.comparingInt((Integer a)-> a).reversed());
+        System.out.println("desc :" + numbers);
+
+    }
+}
+
+class Item implements Comparable<Item>{
+    int price;
+    String name;
+    String type;
+
+    Item(String name, int price, String type){
+        this.price = price;
+        this.name = name;
+        this.type = type;
+    }
+
+    @Override
+    public int compareTo(Item o) {
+        return Integer.compare(this.price, o.price);
+    }
+
+    @Override
+    public String toString(){
+        return "Item {name: " + this.name
+                + ",price: " + this.price
+                + ",type: " + this.type
+                + "}";
+    }
+}
+
+```
