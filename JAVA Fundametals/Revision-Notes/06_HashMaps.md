@@ -1,4 +1,4 @@
-# HashTable
+# HashMap
 HashMap is implemented as an array of nodes, where each node stores a key-value pair
 ```java
 class Node<K, V> {
