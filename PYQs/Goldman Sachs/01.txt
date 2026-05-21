@@ -1,0 +1,44 @@
+𝗥𝗼𝘂𝗻𝗱 𝟭: 𝗢𝗻𝗹𝗶𝗻𝗲 𝗔𝘀𝘀𝗲𝘀𝘀𝗺𝗲𝗻𝘁
+→ Problem 1: Validate a Custom Expression
+→ Given a string containing {, }, and *, where * can represent {, }, or an empty value, validate whether the expression is balanced.
+→ Problem 2: K Most Frequent Words
+→ Return the top-k frequent words sorted by frequency and lexicographical order.
+
+𝗥𝗼𝘂𝗻𝗱 𝟮: 𝗗𝗦𝗔 + 𝗝𝗮𝘃𝗮 𝗖𝗼𝗻𝗰𝗲𝗽𝘁𝘀
+Q1: Reverse Linked List in Pairs, Input: 1 → 2 → 3 → 4 → 5, Output: 2 → 1 → 4 → 3 → 5
+Q2: Core Java Concepts
+→ == vs equals()
+→ Internal working of HashMap
+→ Collision handling (LinkedList vs Tree in Java 8+)
+→ Load factor rationale (0.75)
+→ Java Memory Model
+→ Thread safety & concurrency
+
+𝗥𝗼𝘂𝗻𝗱 𝟯: 𝗦𝗽𝗿𝗶𝗻𝗴 𝗕𝗼𝗼𝘁 + 𝗟𝗼𝘄-𝗟𝗲𝘃𝗲𝗹 𝗗𝗲𝘀𝗶𝗴𝗻
+Q1: Rate Limiter Design
+→ Constraint: Max 5 requests per user per minute
+Q2: Spring Boot Deep Dive
+→ @Component vs @Service vs @Repository
+→ Bean scopes and lifecycle
+→ Spring Boot startup lifecycle
+→ Internals of @Transactional and common pitfalls
+
+𝗥𝗼𝘂𝗻𝗱 𝟰: 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 + 𝗗𝗮𝘁𝗮𝗯𝗮𝘀𝗲 𝗢𝗽𝘁𝗶𝗺𝗶𝘇𝗮𝘁𝗶𝗼𝗻
+Q1: SQL Query Optimization
+→ Indexed WHERE and JOIN conditions
+→ Avoided SELECT *
+→ Leveraged EXPLAIN for query analysis
+→ Discussed denormalization and slow query log analysis
+Q2: API Gateway Authentication & Security
+→ OAuth vs JWT
+→ Token expiration mechanisms
+→ JWT invalidation strategies
+→ Refresh token workflows
+
+𝗥𝗼𝘂𝗻𝗱 𝟱: 𝗛𝗥 + 𝗖𝘂𝗹𝘁𝘂𝗿𝗲 𝗙𝗶𝘁
+→ Why Goldman Sachs?
+→ Managing pressure and tight deadlines
+→ Experience working with global teams
+→ Long-term career vision
+
+Pattern: Goldman evaluates depth of thinking, not just topic coverage.
