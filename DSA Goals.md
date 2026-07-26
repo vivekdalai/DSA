@@ -8,16 +8,16 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Longest Substring Without Repeating Characters
-* Minimum Window Substring ⭐
-* Permutation in String
-* Sliding Window Maximum ⭐
-* Longest Repeating Character Replacement
+-   Longest Substring Without Repeating Characters
+-   Minimum Window Substring ⭐
+-   Permutation in String
+-   Sliding Window Maximum ⭐
+-   Longest Repeating Character Replacement
 
 **Key Learnings**
 
-* Fixed vs Variable window
-* HashMap + window optimization
+-   Fixed vs Variable window
+-   HashMap + window optimization
 
 ---
 
@@ -25,15 +25,15 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Two Sum II (sorted array)
-* Container With Most Water ⭐
-* 3Sum ⭐
-* Remove Duplicates from Sorted Array
-* Valid Palindrome
+-   Two Sum II (sorted array)
+-   Container With Most Water ⭐
+-   3Sum ⭐
+-   Remove Duplicates from Sorted Array
+-   Valid Palindrome
 
 **Key Learnings**
 
-* Opposite vs same direction pointers
+-   Opposite vs same direction pointers
 
 ---
 
@@ -41,15 +41,15 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Binary Search (basic)
-* Search in Rotated Sorted Array ⭐
-* Find Minimum in Rotated Sorted Array
-* Koko Eating Bananas ⭐
-* Capacity to Ship Packages ⭐
+-   Binary Search (basic)
+-   Search in Rotated Sorted Array ⭐
+-   Find Minimum in Rotated Sorted Array
+-   Koko Eating Bananas ⭐
+-   Capacity to Ship Packages ⭐
 
 **Key Learnings**
 
-* Binary search on answer space
+-   Binary search on answer space
 
 ---
 
@@ -57,16 +57,16 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Fibonacci
-* House Robber ⭐
-* Coin Change ⭐
-* Longest Increasing Subsequence ⭐
-* Longest Common Subsequence ⭐
-* 0/1 Knapsack ⭐
+-   Fibonacci
+-   House Robber ⭐
+-   Coin Change ⭐
+-   Longest Increasing Subsequence ⭐
+-   Longest Common Subsequence ⭐
+-   0/1 Knapsack ⭐
 
 **Key Learnings**
 
-* Memoization → Tabulation → Space optimization
+-   Memoization → Tabulation → Space optimization
 
 ---
 
@@ -74,15 +74,15 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Jump Game ⭐
-* Jump Game II
-* Activity Selection
-* Gas Station ⭐
-* Partition Labels
+-   Jump Game ⭐
+-   Jump Game II
+-   Activity Selection
+-   Gas Station ⭐
+-   Partition Labels
 
 **Key Learnings**
 
-* Local optimal choice correctness
+-   Local optimal choice correctness
 
 ---
 
@@ -90,15 +90,15 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Subsets ⭐
-* Permutations ⭐
-* Combination Sum ⭐
-* N-Queens ⭐
-* Word Search
+-   Subsets ⭐
+-   Permutations ⭐
+-   Combination Sum ⭐
+-   N-Queens ⭐
+-   Word Search
 
 **Key Learnings**
 
-* Choose → Explore → Undo
+-   Choose → Explore → Undo
 
 ---
 
@@ -106,16 +106,16 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Number of Islands ⭐
-* Flood Fill
-* Rotting Oranges ⭐
-* Clone Graph
-* Course Schedule ⭐
+-   Number of Islands ⭐
+-   Flood Fill
+-   Rotting Oranges ⭐
+-   Clone Graph
+-   Course Schedule ⭐
 
 **Key Learnings**
 
-* Grid to graph conversion
-* BFS vs DFS usage
+-   Grid to graph conversion
+-   BFS vs DFS usage
 
 ---
 
@@ -123,13 +123,13 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Course Schedule I & II ⭐
-* Alien Dictionary ⭐
+-   Course Schedule I & II ⭐
+-   Alien Dictionary ⭐
 
 **Key Learnings**
 
-* Kahn’s Algorithm (BFS)
-* DFS ordering
+-   Kahn’s Algorithm (BFS)
+-   DFS ordering
 
 ---
 
@@ -137,15 +137,15 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Number of Provinces ⭐
-* Redundant Connection
-* Accounts Merge ⭐
-* Kruskal’s MST
+-   Number of Provinces ⭐
+-   Redundant Connection
+-   Accounts Merge ⭐
+-   Kruskal’s MST
 
 **Key Learnings**
 
-* Path compression
-* Union by rank
+-   Path compression
+-   Union by rank
 
 ---
 
@@ -153,14 +153,14 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Kth Largest Element ⭐
-* Top K Frequent Elements ⭐
-* Merge K Sorted Lists ⭐
-* Find Median from Data Stream ⭐
+-   Kth Largest Element ⭐
+-   Top K Frequent Elements ⭐
+-   Merge K Sorted Lists ⭐
+-   Find Median from Data Stream ⭐
 
 **Key Learnings**
 
-* Min heap vs max heap
+-   Min heap vs max heap
 
 ---
 
@@ -168,14 +168,14 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Next Greater Element ⭐
-* Daily Temperatures ⭐
-* Largest Rectangle in Histogram ⭐
-* Sliding Window Maximum
+-   Next Greater Element ⭐
+-   Daily Temperatures ⭐
+-   Largest Rectangle in Histogram ⭐
+-   Sliding Window Maximum
 
 **Key Learnings**
 
-* Increasing vs decreasing stack
+-   Increasing vs decreasing stack
 
 ---
 
@@ -183,13 +183,13 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Subarray Sum Equals K ⭐
-* Range Sum Query
-* Product of Array Except Self ⭐
+-   Subarray Sum Equals K ⭐
+-   Range Sum Query
+-   Product of Array Except Self ⭐
 
 **Key Learnings**
 
-* Precompute + hashmap trick
+-   Precompute + hashmap trick
 
 ---
 
@@ -197,14 +197,14 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Single Number ⭐
-* Counting Bits
-* Subsets (bitmasking)
-* Missing Number
+-   Single Number ⭐
+-   Counting Bits
+-   Subsets (bitmasking)
+-   Missing Number
 
 **Key Learnings**
 
-* XOR patterns
+-   XOR patterns
 
 ---
 
@@ -212,15 +212,15 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Maximum Depth of Binary Tree
-* Diameter of Binary Tree ⭐
-* Binary Tree Level Order Traversal ⭐
-* Lowest Common Ancestor ⭐
-* Path Sum
+-   Maximum Depth of Binary Tree
+-   Diameter of Binary Tree ⭐
+-   Binary Tree Level Order Traversal ⭐
+-   Lowest Common Ancestor ⭐
+-   Path Sum
 
 **Key Learnings**
 
-* DFS recursion patterns
+-   DFS recursion patterns
 
 ---
 
@@ -228,22 +228,22 @@ A structured list of the most important problem-solving paradigms in Data Struct
 
 **Core Problems**
 
-* Implement Trie ⭐
-* Word Search II ⭐
-* Longest Word in Dictionary
+-   Implement Trie ⭐
+-   Word Search II ⭐
+-   Longest Word in Dictionary
 
 **Key Learnings**
 
-* Prefix-based searching
+-   Prefix-based searching
 
 ---
 
 ## 🎯 How to Use This
 
-1. Pick one concept at a time
-2. Solve 3–5 core problems
-3. Understand the pattern deeply
-4. Move to next concept
+1.  Pick one concept at a time
+2.  Solve 3–5 core problems
+3.  Understand the pattern deeply
+4.  Move to next concept
 
 ---
 

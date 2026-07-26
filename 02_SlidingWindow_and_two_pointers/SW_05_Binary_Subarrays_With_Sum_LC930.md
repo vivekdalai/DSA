@@ -38,6 +38,9 @@ This works because:
 - array is binary / non-negative
 - so counts are monotonic by target
 
+Note
+- A single window only represents one start and one end, so `windowSum == goal` counts only one valid subarray.
+- here we find all window with sum `<= goal`
 ------------------------------------------------------------------------
 
 ## 🔁 3. Steps

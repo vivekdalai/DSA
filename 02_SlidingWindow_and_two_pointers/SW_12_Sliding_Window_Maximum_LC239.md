@@ -49,36 +49,39 @@ For each index `i`:
 ## 💻 4. Java Implementation
 
 ```java
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.*;
 
-class SlidingWindowMaximum {
-    public int[] maxSlidingWindow(int[] nums, int k) {
-        int n = nums.length;
-        int[] ans = new int[n - k + 1];
-        Deque<Integer> deque = new ArrayDeque<>();
-        int idx = 0;
+class Solution {
+   public int[] maxSlidingWindow(int[] nums, int k) {
+      int n = nums.length;
+      int[] result = new int[n - k + 1];
 
-        for (int i = 0; i < n; i++) {
-            int windowStart = i - k + 1;
+      Deque<Integer> deque = new ArrayDeque<>();
+      int resultIndex = 0;
 
-            while (!deque.isEmpty() && deque.peekFirst() < windowStart) {
-                deque.pollFirst();
-            }
+      for (int i = 0; i < n; i++) {
 
-            while (!deque.isEmpty() && nums[deque.peekLast()] <= nums[i]) {
-                deque.pollLast();
-            }
+         // 1. Remove indices that are outside the current window
+         if (!deque.isEmpty() && deque.peekFirst() <= i - k) {
+            deque.pollFirst();
+         }
 
-            deque.offerLast(i);
+         // 2. Remove smaller values from the back
+         while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+            deque.pollLast();
+         }
 
-            if (i >= k - 1) {
-                ans[idx++] = nums[deque.peekFirst()];
-            }
-        }
+         // 3. Add current index
+         deque.offerLast(i);
 
-        return ans;
-    }
+         // 4. Start recording answer once first window is complete
+         if (i >= k - 1) {
+            result[resultIndex++] = nums[deque.peekFirst()];
+         }
+      }
+
+      return result;
+   }
 }
 ```
 

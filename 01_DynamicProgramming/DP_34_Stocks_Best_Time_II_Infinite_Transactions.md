@@ -32,6 +32,14 @@ B) DP on “buy/sell” states (template for stock DP series)
     - `buy == 1` → we can buy or skip
     - `buy == 0` → we can sell or skip
 
+At any given day i, you are in one of two states:
+- buy == 1 (Ready to Buy): You do not currently hold a stock. Your choices are:
+  - Buy the stock today.
+  - Skip today and do nothing.
+- buy == 0 (Ready to Sell): You currently hold a stock. Your choices are:
+  - Sell the stock today.
+  - Skip today and do nothing.
+
 ------------------------------------------------------------------------
 
 ## 🔁 3. DP Recurrence

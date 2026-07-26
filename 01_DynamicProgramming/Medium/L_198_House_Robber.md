@@ -47,22 +47,60 @@ At each house there are only two useful choices: rob it and then you must skip t
 
 ------------------------------------------------------------------------
 
-## 3. Take-or-Skip DP Used in the File
+## 3. Build the Intuition with Recursion First
+
+Think from the last house at index `i`.
+
+- If we rob house `i`, we must skip `i - 1`, so profit becomes `nums[i] + solve(i - 2)`.
+- If we skip house `i`, profit becomes `solve(i - 1)`.
+- So the recurrence is:
+
+```java
+solve(i) = max(nums[i] + solve(i - 2), solve(i - 1))
+```
+
+Base cases:
+
+- `solve(i) = 0` when `i < 0`
+- `solve(0) = nums[0]`
+
+Plain recursive version:
+
+```java
+public int rob(int[] nums) {
+    return solve(nums.length - 1, nums);
+}
+
+private int solve(int i, int[] nums) {
+    if (i < 0) return 0;
+    if (i == 0) return nums[0];
+
+    int take = nums[i] + solve(i - 2, nums);
+    int skip = solve(i - 1, nums);
+    return Math.max(take, skip);
+}
+```
+
+This gives the right intuition first, but it repeats subproblems, so we then convert the same recurrence into DP.
+
+------------------------------------------------------------------------
+
+## 4. Take-or-Skip DP Used in the File
 
 - `rob` delegates to the tabulation method in the file.
 - `dp[i]` means the maximum money possible from houses `0..i`.
 - For every index, compute `take = nums[i] + dp[i - 2]` and `skip = dp[i - 1]`, then keep the larger value.
-- The file also has recursion with memoization and a space-optimized version; the recurrence is the same in all of them.
+- Memoization, tabulation, and space optimization all come from the same recurrence above.
 
 ------------------------------------------------------------------------
 
-## 4. Short Dry Run
+## 5. Short Dry Run
 
 For `nums = [2,7,9,3,1]`: best values become `2, 7, 11, 11, 12`. The answer is `12`, using houses with values `2 + 9 + 1`.
 
 ------------------------------------------------------------------------
 
-## 5. Clean Interview Version
+## 6. Clean Interview Version
 
 ```java
 public int rob(int[] nums) {
@@ -82,14 +120,15 @@ public int rob(int[] nums) {
 
 ------------------------------------------------------------------------
 
-## 6. Complexity
+## 7. Complexity
 
-- Time: `O(n)`
-- Space: `O(1)` in the clean version. The file's `rob_dp` method uses `O(n)` space.
+- Recursive intuition version: `O(2^n)` time, `O(n)` stack space
+- Iterative clean version: `O(n)` time and `O(1)` extra space
+- The file's `rob_dp` method uses `O(n)` space.
 
 ------------------------------------------------------------------------
 
-## 7. Pattern Recognition and Revision Notes
+## 8. Pattern Recognition and Revision Notes
 
 - This is the standard non-adjacent choice DP.
 - If choosing index `i` invalidates index `i - 1`, think `take/skip`.

@@ -14,6 +14,16 @@ Rules:
 - reverse every complete group of size `k`
 - if the remaining nodes are fewer than `k`, leave them as they are
 
+
+Instead of trying to track everything at once, think of the problem in three distinct phases for each group:
+
+   - Count: 
+     Check if there are at least $k$ nodes left ahead of you. If there aren't, you're done—leave them as-is.
+   - Reverse: 
+     Reverse just those $k$ nodes using a standard linked list reversal.
+   - Hook Up: 
+     Connect the tail of your newly reversed group to the next segment of the list.
+
 Example:
 - `1 -> 2 -> 3 -> 4 -> 5`, `k = 2`
 - result = `2 -> 1 -> 4 -> 3 -> 5`
@@ -95,8 +105,10 @@ class ReverseNodesInKGroup {
                 curr = nextNode;
             }
 
-            ListNode newGroupHead = kth;
-            ListNode newGroupTail = groupPrev.next;
+           // 3. Hook the reversed group back into the main list
+           ListNode tmp = groupPrev.next; // This was the old start, now it's the tail
+           groupPrev.next = kth;          // Connect previous group to the new head
+           groupPrev = tmp;               // Move groupPrev to the tail for the next loop
 
             groupPrev.next = newGroupHead;
             groupPrev = newGroupTail;
