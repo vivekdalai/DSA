@@ -145,7 +145,30 @@ Pros:
 
 ------------------------------------------------------------------------
 
-## 🧪 5. Edge Cases and Checks
+## 🔎 5. Dry Run Example
+
+stones = [0, 1, 3, 5, 6, 8, 12, 17], indices 0..7 (index 7 = last stone = 17)
+
+- `canCross`: `stones[1] == 1` → OK, proceed. `dfs(0, 0)`:
+- `dfs(0, 0)`: last jump 0 → try j ∈ {-1,0,1}, only j=1 valid (>0). nextPos = 0+1 = 1 → stone index 1. Recurse `dfs(1, 1)`.
+- `dfs(1, 1)`: try j ∈ {0,1,2} → valid j ∈ {1,2}.
+  - j=1: nextPos = 1+1 = 2 → not a stone, skip.
+  - j=2: nextPos = 1+2 = 3 → stone index 2. Recurse `dfs(2, 2)`.
+- `dfs(2, 2)`: try j ∈ {1,2,3}.
+  - j=1: nextPos = 3+1 = 4 → not a stone, skip.
+  - j=2: nextPos = 3+2 = 5 → stone index 3. Recurse `dfs(3, 2)`.
+- `dfs(3, 2)`: try j ∈ {1,2,3}.
+  - j=1: nextPos = 5+1 = 6 → stone index 4. Recurse `dfs(4, 1)`.
+- `dfs(4, 1)`: try j ∈ {1,2} (j=0 invalid).
+  - j=2: nextPos = 6+2 = 8 → stone index 5. Recurse `dfs(5, 2)`.
+- `dfs(5, 2)`: try j ∈ {1,2,3}.
+  - j=3: nextPos = 8+3 = 11 → not a stone. j=2: 8+2=10 → not a stone. j=1: 8+1=9 → not a stone. All fail from this branch (memoized false); backtracking would try alternate choices earlier (e.g., `dfs(4,1)` with j=1 → nextPos=7, not a stone; overall the search backtracks until it finds `... → 8 → 12 (j=4) → 17 (j=5)`), eventually reaching stone index 7 (`currPos == stones.length - 1`) → returns `true`.
+
+Answer: `canCross(stones) = true`.
+
+------------------------------------------------------------------------
+
+## 🧪 6. Edge Cases and Checks
 
 - stones[1] != 1 → false (first jump must be 1).
 - Large gaps early make it impossible:
@@ -154,7 +177,7 @@ Pros:
 
 ------------------------------------------------------------------------
 
-## 🏷 6. Pattern Recognition
+## 🏷 7. Pattern Recognition
 
 - Name: “DP on index and last move”
 - Family: Graph/DP hybrid (states: nodes = (i,k), edges from (i,k) → (j,k’))
@@ -164,7 +187,7 @@ Pros:
 
 ------------------------------------------------------------------------
 
-## 📌 7. Tips and Pitfalls
+## 📌 8. Tips and Pitfalls
 
 - Use a position-to-index map for O(1) stone existence checks.
 - Memoize (i,k) results; k never needs to exceed n-1.
@@ -172,7 +195,7 @@ Pros:
 
 ------------------------------------------------------------------------
 
-## ✅ 8. Takeaway
+## ✅ 9. Takeaway
 
 - Either memoized DFS over (i,k) or iterative map<position, set<k>> yields an O(n^2) solution.
 - The provided top-down DP solution is clean and efficient for LeetCode 403.

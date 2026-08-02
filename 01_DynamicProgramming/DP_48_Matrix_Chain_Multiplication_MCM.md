@@ -203,6 +203,7 @@ Related interval DP problems:
 - n=1 (single matrix) → cost 0
 - Large dimension products may exceed int if values are big; in Java int is often safe for typical constraints, but consider long if needed
 - Ensure indices align: Ai is p[i-1] x p[i] (1-based matrices)
+- Space optimization note: no natural O(n) reduction exists here — `dp[i][j]` depends on every split `dp[i][k]` and `dp[k+1][j]` for `k` in `[i, j-1]`, spanning the whole table, not just neighboring rows. The full O(n^2) table is required by design (same reason as Burst Balloons and interval DP in general).
 
 ------------------------------------------------------------------------
 

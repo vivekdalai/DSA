@@ -177,81 +177,32 @@ coins = [1, 2, 5], amount = 5
 Initialization:
 - dp = [1, 0, 0, 0, 0, 0]
 
-Process coin 1:
-- dp = [1, 1, 2, 3, 4, 5] (every value v gets +dp[v-1])
+Process coin=1 (dp[v] += dp[v-1], updated in place so each new v sees the just-updated dp[v-1]):
+- v=1: dp[1]+=dp[0] → 0+1=1
+- v=2: dp[2]+=dp[1] → 0+1=1
+- v=3: dp[3]+=dp[2] → 0+1=1
+- v=4: dp[4]+=dp[3] → 0+1=1
+- v=5: dp[5]+=dp[4] → 0+1=1
+→ dp = [1, 1, 1, 1, 1, 1]
 
-Process coin 2:
-- v=2: dp[2]+=dp[0] → 2+1=3
-- v=3: dp[3]+=dp[1] → 3+1=4
-- v=4: dp[4]+=dp[2] → 4+3=7
-- v=5: dp[5]+=dp[3] → 5+4=9
-Now dp = [1, 1, 3, 4, 7, 9]
-
-Process coin 5:
-- v=5: dp[5]+=dp[0] → 9+1=10
-
-Interpretation: Using strictly combinations,
-- The standard expected answer for LC-518 is 4 for [1,2,5], amount=5.
-- Note: The above raw dp steps “as-is” counted permutations due to explanation artifact. The correct 1D coin-outer formulation yields dp[5]=4:
-  - Start dp = [1,0,0,0,0,0]
-  - After coin 1: [1,1,2,3,4,5]
-  - After coin 2: [1,1,3,4,6,8] → This mismatch indicates a manual calc slip; let’s recompute precisely:
-
-Recompute precisely:
-- After coin 1:
-  - dp: [1,1,2,3,4,5]
-- After coin 2:
-  - v=2: dp[2] += dp[0] = 2 + 1 = 3
-  - v=3: dp[3] += dp[1] = 3 + 1 = 4
-  - v=4: dp[4] += dp[2] = 4 + 3 = 7
-  - v=5: dp[5] += dp[3] = 5 + 4 = 9
-- After coin 5:
-  - v=5: dp[5] += dp[0] = 9 + 1 = 10
-
-This 10 is the count of permutations (order-dependent), which means the nesting/initial state above is conceptually off if we intended combinations. The correct coin-outer/value-inner loop DOES count combinations. The confusion here stems from starting dp after “coin 1” with dp[v] = v (1-way for each sum using only 1’s, which is correct), then adding with coin 2 increments IN PLACE. Let’s present the correct expected dp rows for combinations (verified):
-
-Correct table (combinations):
-- Start: dp = [1,0,0,0,0,0]
-- coin=1:
-  - v=1..5: dp[v] += dp[v-1]
-  - dp = [1,1,1+1=2,2+1=3,3+1=4,4+1=5] → [1,1,2,3,4,5]
-- coin=2:
-  - v=2..5: dp[v] += dp[v-2]
-  - dp[2]=2+1=3, dp[3]=3+1=4, dp[4]=4+2=6, dp[5]=5+2=7 → [1,1,3,4,6,7]
-- coin=5:
-  - v=5: dp[5] += dp[0] → 7+1=8 → [1,1,3,4,6,8]
-
-But LC-518’s expected answer is 4. Why 8? Because the above is still double-counting compared to LC’s definition? Actually, LC-518 (Coin Change II) combinations for [1,2,5], amount=5 is 4:
-- 5
-- 2+2+1
-- 2+1+1+1
-- 1+1+1+1+1
-
-The discrepancy means the manual recomputation mixed transitions. The correct 1D transitions with coin-outer produce dp[5]=4. Let’s fix the arithmetic carefully:
-
-Accurate recomputation:
-- Start dp: [1,0,0,0,0,0]
-
-After coin=1:
-- v=1: dp[1]+=dp[0] → 1
-- v=2: dp[2]+=dp[1] → 1
-- v=3: dp[3]+=dp[2] → 1
-- v=4: dp[4]+=dp[3] → 1
-- v=5: dp[5]+=dp[4] → 1
-→ dp = [1,1,1,1,1,1]
-
-After coin=2:
+Process coin=2 (dp[v] += dp[v-2]):
 - v=2: dp[2]+=dp[0] → 1+1=2
 - v=3: dp[3]+=dp[1] → 1+1=2
 - v=4: dp[4]+=dp[2] → 1+2=3
 - v=5: dp[5]+=dp[3] → 1+2=3
-→ dp = [1,1,2,2,3,3]
+→ dp = [1, 1, 2, 2, 3, 3]
 
-After coin=5:
+Process coin=5 (dp[v] += dp[v-5]):
 - v=5: dp[5]+=dp[0] → 3+1=4
-→ dp = [1,1,2,2,3,4]
+→ dp = [1, 1, 2, 2, 3, 4]
 
-Now dp[5] = 4 (correct). Moral: always start dp[v]=0 for v>0, dp[0]=1, and update in-place coin-outer forward.
+Answer: dp[5] = 4, matching the 4 combinations:
+- {5}
+- {2,2,1}
+- {2,1,1,1}
+- {1,1,1,1,1}
+
+Key takeaway from this trace: because the update is in-place with an ascending `v` loop, `dp[v-coin]` already reflects any contribution from the *current* coin at smaller values — that is exactly what allows unlimited reuse of the same coin (unbounded knapsack) while the coin-outer loop still avoids counting order permutations.
 
 ------------------------------------------------------------------------
 

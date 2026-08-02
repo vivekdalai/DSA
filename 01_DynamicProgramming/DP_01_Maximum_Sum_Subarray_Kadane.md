@@ -122,7 +122,17 @@ Whenever you see:
 
 ------------------------------------------------------------------------
 
-## 🔄 9. Common Variations
+## 🔄 9. Edge Cases and Pitfalls
+
+-   Single-element array → answer is that element (loop from i=1 never runs).
+-   All-negative array → answer is the maximum (least negative) single element, not 0; do not clamp to 0 unless the problem explicitly allows an empty subarray.
+-   All-positive array → answer is the sum of the whole array.
+-   Array containing 0s → 0 can act as a soft reset point but is not special-cased; the recurrence handles it naturally.
+-   Overflow: for very large inputs/values, consider `long` accumulators (not usually needed for typical `int` constraints).
+
+------------------------------------------------------------------------
+
+## 🔄 10. Common Variations
 
 1.  **Return actual subarray**\
     → Track start and end indices.

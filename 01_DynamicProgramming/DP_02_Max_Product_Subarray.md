@@ -102,6 +102,10 @@ public int maxProduct(int[] nums) {
 }
 ```
 
+Complexity:
+- Time: O(N)
+- Space: O(1)
+
 ------------------------------------------------------------------------
 
 ## 🔎 7. Full Dry Run Example

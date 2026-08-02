@@ -154,6 +154,8 @@ The structure ensures neighbors for last-burst k are exactly l and r, which are 
 - Single element → nums[0] (because val becomes [1, nums[0], 1] → gain 1*nums[0]*1)
 - Ensure to pad with 1 at both ends
 - O(n^3) may be heavy for n ~ 500; typical constraints are n ≤ ~300 (solutions still pass in optimized languages)
+- Space optimization note: unlike linear DP, `dp[l][r]` depends on every intermediate split `dp[l][k]` and `dp[k][r]` for `k` between `l` and `r`, not just an adjacent row/column. No rolling-array reduction is possible here — the full O(n^2) table is required. This is a deliberate omission, not an oversight.
+- Memo caveat (top-down version): the memoized DFS uses `0` as the "uncomputed" sentinel. If `nums` contains `0`s (allowed by LC 312's constraints), a genuinely-computed answer of `0` for some sub-interval will not be recognized as cached and will be recomputed — this does not produce a wrong answer (recursion still terminates correctly), but it can degrade the memoization benefit for inputs with many zero-valued balloons. Prefer `Integer[][]` with `null` sentinel if this matters for your input distribution.
 
 ------------------------------------------------------------------------
 

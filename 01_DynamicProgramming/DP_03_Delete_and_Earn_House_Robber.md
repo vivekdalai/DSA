@@ -229,6 +229,10 @@ class HouseRobber {
 }
 ```
 
+Complexity:
+- Time: O(n)
+- Space: O(n) recursive, O(1) iterative
+
 ------------------------------------------------------------------------
 
 ## 7D. House Robber II (Circular Street Variant)
@@ -259,6 +263,10 @@ class HouseRobberII {
     }
 }
 ```
+
+Complexity:
+- Time: O(n)
+- Space: O(1)
 
 ------------------------------------------------------------------------
 

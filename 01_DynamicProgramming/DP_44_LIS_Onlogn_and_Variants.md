@@ -340,7 +340,19 @@ These all build on the LIS thinking above.
 
 ---
 
-## 13. Quick Takeaway
+## 13. Edge Cases and Pitfalls
+
+- Empty array (`n = 0`) -> LIS length is `0`; guard before indexing `tails`.
+- Single element -> LIS length is `1`.
+- All strictly decreasing (e.g. `[5,4,3,2,1]`) -> `tails` never grows past size 1; answer is `1`.
+- All equal elements (e.g. `[3,3,3]`) -> since LIS here is strictly increasing, each `3` just replaces `tails[0]`; answer stays `1`. If the problem instead asks for a *non-decreasing* subsequence, switch the binary search from "first index `>= x`" to "first index `> x`" (upper bound) so equal values can extend the run.
+- Duplicates mixed with increasing values (e.g. `[2,2,3]`) -> only one `2` can be "kept"; `tails` correctly stays `[2,3]`.
+- Do not confuse `tails` with the actual LIS when asked to reconstruct it (see Confusion 1) — this is the most common interview slip-up.
+- `Arrays.binarySearch` variant relies on the exact `-pos - 1` conversion; double-check this when adapting to non-decreasing variants.
+
+---
+
+## 14. Quick Takeaway
 
 - `dp[i]` approach gives LIS length in `O(n^2)`
 - `tails` approach gives LIS length in `O(n log n)`

@@ -158,6 +158,19 @@ Intuition:
 - We enumerate all ways to pick indices i<j<k such that s[i] = 'b', s[j] = 'a', s[k] = 'g'
 - 1D dp updates backward to ensure correct counting without reusing the same char twice in one iteration.
 
+Concrete smaller trace (2D table): s = "aab", t = "ab" (n = 3, m = 2)
+
+Base column: `dp[i][0] = 1` for all i; `dp[0][j>0] = 0`.
+
+| i (s prefix) | dp[i][0] | dp[i][1] ('a') | dp[i][2] ('ab') |
+|---|---|---|---|
+| 0 ("")   | 1 | 0 | 0 |
+| 1 ("a")  | 1 | dp[0][1]+dp[0][0] = 0+1 = **1** | dp[0][2] = 0 |
+| 2 ("aa") | 1 | dp[1][1]+dp[1][0] = 1+1 = **2** | dp[1][2] = 0 |
+| 3 ("aab")| 1 | dp[2][1] = 2 (mismatch 'b'≠'a') | dp[2][2]+dp[2][1] = 0+2 = **2** |
+
+Answer: `dp[3][2] = 2`. Indeed "ab" appears as a subsequence of "aab" in 2 ways: using the 1st 'a' with 'b', or the 2nd 'a' with 'b'.
+
 ------------------------------------------------------------------------
 
 ## 🏷 7. Pattern Recognition

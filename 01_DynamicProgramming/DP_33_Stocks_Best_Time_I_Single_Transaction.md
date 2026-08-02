@@ -1,6 +1,6 @@
 # Dynamic Programming Notes
 
-## 32 - Best Time to Buy and Sell Stock I (Single Transaction)
+## 33 - Best Time to Buy and Sell Stock I (Single Transaction)
 
 **Generated on:** 2026-02-24 20:59:05 (IST)
 

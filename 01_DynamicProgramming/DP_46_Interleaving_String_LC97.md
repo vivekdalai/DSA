@@ -136,6 +136,20 @@ Both pointers must maintain order within their own strings; dp enforces that.
 
 ------------------------------------------------------------------------
 
+## 🔎 5B. Dry Run Example
+
+s1 = "ab", s2 = "c", s3 = "cab" (n = 2, m = 1). Length check: 2+1 = 3 = len(s3), OK.
+
+| dp[i][j] | j=0 | j=1 (s2="c") |
+|---|---|---|
+| i=0 | true | dp[0][1] = dp[0][0] && s2[0]=='c'==s3[0]='c' → **true** |
+| i=1 (s1[0]='a') | dp[1][0] = dp[0][0] && s1[0]='a'==s3[0]='c' → **false** | c=s3[1]='a': (dp[0][1] && s1[0]='a'==c) → true, OR (dp[1][0] && ...) → **true** |
+| i=2 (s1[1]='b') | dp[2][0] = dp[1][0] && ... → **false** | c=s3[2]='b': (dp[1][1] && s1[1]='b'==c) → true, OR (dp[2][0] && ...) → **true** |
+
+Answer: `dp[2][1] = true` → "cab" is formed by interleaving "ab" and "c" ('c' then 'a' then 'b').
+
+------------------------------------------------------------------------
+
 ## 🏷 6. Pattern Recognition
 
 - Name: Interleaving DP on two strings

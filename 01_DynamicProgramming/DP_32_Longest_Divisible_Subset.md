@@ -1,6 +1,6 @@
 # Dynamic Programming Notes
 
-## 33 - Longest Divisible Subset (LDS)
+## 32 - Longest Divisible Subset (LDS)
 
 **Generated on:** 2026-02-24 21:15:49 (IST)
 

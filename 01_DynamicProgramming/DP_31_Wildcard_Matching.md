@@ -234,7 +234,28 @@ This is elegant and very efficient for production use.
 
 ------------------------------------------------------------------------
 
-## 🔎 5. Edge Cases and Pitfalls
+## 🔎 5. Dry Run Example
+
+s = "aa", p = "a*" (n = 2, m = 2)
+
+Base row (i = 0):
+- `dp[0][0] = true`
+- `dp[0][1]`: `p[0] = 'a'` (not `*`) → `false`
+- `dp[0][2]`: `p[1] = '*'` → `dp[0][2] = dp[0][1] = false`
+
+i = 1 (`s[0] = 'a'`):
+- `dp[1][1]`: `p[0] == s[0]` → `dp[1][1] = dp[0][0] = true`
+- `dp[1][2]`: `p[1] = '*'` → `dp[1][2] = dp[1][1] || dp[0][2] = true`
+
+i = 2 (`s[1] = 'a'`):
+- `dp[2][1]`: `p[0] == s[1]` → `dp[2][1] = dp[1][0] = false`
+- `dp[2][2]`: `p[1] = '*'` → `dp[2][2] = dp[2][1] || dp[1][2] = false || true = true`
+
+Answer: `dp[2][2] = true` → "aa" matches "a*".
+
+------------------------------------------------------------------------
+
+## 🔄 6. Edge Cases and Pitfalls
 
 - Leading/trailing sequences of `*` are common corner cases; ensure dp[0][j] initialization is correct.
 - Multiple `*` in a row behave like a single `*` (both dp and greedy handle this inherently).
@@ -243,7 +264,7 @@ This is elegant and very efficient for production use.
 
 ------------------------------------------------------------------------
 
-## 🏷 6. Pattern Recognition
+## 🏷 7. Pattern Recognition
 
 - Name: Wildcard Matching (DP on two strings with special tokens)
 - Family: 2D DP (edit/compare style)
@@ -253,7 +274,7 @@ This is elegant and very efficient for production use.
 
 ------------------------------------------------------------------------
 
-## ✅ 7. Takeaway
+## ✅ 8. Takeaway
 
 - Canonical DP:
   - `?` → diagonal (consume 1 from both)

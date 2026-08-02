@@ -163,7 +163,36 @@ Complexity:
 
 ------------------------------------------------------------------------
 
-## 🧪 6. Edge Cases
+## 🔎 6. Dry Run Example
+
+s = "aab", p = "c*a*b" (n = 3, m = 5)
+
+Base row (i = 0):
+- `dp[0][0] = true`
+- `dp[0][1]` ('c'): `false`
+- `dp[0][2]` ('c*'): `dp[0][2] = dp[0][0] = true` (zero 'c')
+- `dp[0][3]` ('a'): `false`
+- `dp[0][4]` ('a*'): `dp[0][4] = dp[0][2] = true` (zero 'a', reuses zero-'c' state)
+- `dp[0][5]` ('b'): `false`
+
+i = 1 (`s[0] = 'a'`):
+- `dp[1][2]` ('c*', zero occurrence): `dp[1][2] = dp[1][0] = false`
+- `dp[1][4]` ('a*'): zero-occurrence `dp[1][2] = false`; one-or-more since `prev='a'==s[0]` → `dp[1][4] |= dp[0][4] = true`
+- `dp[1][5]` ('b'): `s[0] != 'b'` → `false`
+
+i = 2 (`s[1] = 'a'`):
+- `dp[2][4]` ('a*'): one-or-more since `prev='a'==s[1]` → `dp[2][4] |= dp[1][4] = true`
+- `dp[2][5]` ('b'): `s[1] != 'b'` → `false`
+
+i = 3 (`s[2] = 'b'`):
+- `dp[3][4]` ('a*'): zero-occurrence `dp[3][2]`; `prev='a' != s[2]='b'` so no one-or-more branch. `dp[3][2]` traces back to `false` (no 'c' at index 2), so `dp[3][4] = false`.
+- `dp[3][5]` ('b'): `p[4]='b' == s[2]` → `dp[3][5] = dp[2][4] = true`
+
+Answer: `dp[3][5] = true` → "aab" matches "c*a*b" (c* → "", a* → "aa", b → "b").
+
+------------------------------------------------------------------------
+
+## 🧪 7. Edge Cases
 
 - Empty pattern vs empty string → true
 - Patterns like "a*b*c*" can match empty string
@@ -172,7 +201,7 @@ Complexity:
 
 ------------------------------------------------------------------------
 
-## 🏷 7. Pattern Recognition
+## 🏷 8. Pattern Recognition
 
 - Name: Regular Expression Matching (with '.' and '*')
 - Family: 2D DP on (i, j) with special handling for Kleene star
@@ -182,7 +211,7 @@ Complexity:
 
 ------------------------------------------------------------------------
 
-## ✅ 8. Takeaway
+## ✅ 9. Takeaway
 
 - Use `dp[i][j]` (or memoized dfs) with clear handling of `*`:
   - Zero occurrence: `dp[i][j-2]`

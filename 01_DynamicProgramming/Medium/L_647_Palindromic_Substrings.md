@@ -114,11 +114,52 @@ public int countSubstrings(String s) {
 
 ------------------------------------------------------------------------
 
-## 7. Pattern Recognition / Revision Notes
+## 6B. Space-Optimized Alternative — Center Expansion (O(1) extra space)
+
+The `O(n^2)` table is not required to solve this problem; every palindrome has a unique center (either a single character for odd length, or a gap between two characters for even length). Expanding outward from each of the `2n - 1` centers while `s[l] == s[r]` counts every palindromic substring exactly once, with no table at all.
+
+```java
+public int countSubstrings(String s) {
+    int n = s.length();
+    int count = 0;
+
+    for (int center = 0; center < 2 * n - 1; center++) {
+        int l = center / 2;
+        int r = l + (center % 2);
+        while (l >= 0 && r < n && s.charAt(l) == s.charAt(r)) {
+            count++;
+            l--;
+            r++;
+        }
+    }
+    return count;
+}
+```
+
+Complexity:
+- Time: `O(n^2)` worst case (e.g., `"aaaa...a"`), but `O(1)` extra space beyond the input.
+- Space: `O(1)`
+
+This is the version to lead with in an interview: same asymptotic time as the DP table, but no `O(n^2)` memory.
+
+------------------------------------------------------------------------
+
+## 7. Edge Cases and Pitfalls
+
+- Empty string is disallowed by constraints (`1 <= s.length`), but a length-1 string must still return `1`.
+- All-identical characters (e.g., `"aaa"`) is the worst case for center expansion — every one of the `2n - 1` centers expands fully, giving `n(n+1)/2` palindromes.
+- Off-by-one in center expansion: `center / 2` and `center + center % 2` must be derived carefully to cover both odd-length (single character) and even-length (gap) centers; verify with a 2-character string like `"aa"`.
+- In the DP table version, the `right - left <= 2` shortcut must be checked *before* falling back to `dp[left + 1][right - 1]`, otherwise length-2/3 windows read an uninitialized cell.
+- Don't confuse this with Longest Palindromic Substring (LC 5) — that problem tracks the single best window; this one accumulates a count over every valid window.
+
+------------------------------------------------------------------------
+
+## 8. Pattern Recognition / Revision Notes
 
 - Same DP table as problem `5`, different output objective.
 - When a boolean DP state directly answers `is this window good?`, you can often count on the fly instead of storing extra information.
 - Revision shortcut: longest palindrome and count palindromes share the same recurrence; only the bookkeeping changes.
+- Center expansion is the space-optimal way to enumerate all palindromic substrings/counts; reach for the DP table mainly when you need random-access answers to "is s[l..r] a palindrome?" queries.
 
 ------------------------------------------------------------------------
 

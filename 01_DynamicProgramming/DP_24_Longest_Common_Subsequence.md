@@ -159,10 +159,22 @@ Complexity:
 X = "abef" (n=4)  
 Y = "abcdaf" (m=6)
 
-Build 1-based dp (rows for X, cols for Y):
-- Initialize first row/col with 0
-- Matches at (i,j): when `X[i-1] == Y[j-1]` then `dp[i][j] = 1 + dp[i-1][j-1]`
-- Else `max(top, left)`
+Build 1-based dp (rows for X, cols for Y), 0-initialized first row/col:
+
+```
+        ""  a  b  c  d  a  f
+    ""    0  0  0  0  0  0  0
+    a     0  1  1  1  1  1  1
+    b     0  1  2  2  2  2  2
+    e     0  1  2  2  2  2  2
+    f     0  1  2  2  2  2  3
+```
+
+Trace of the last row (X[3]='f'):
+- j=1 (Y='a'): no match → max(dp[3][1]=1, dp[4][0]=0) = 1
+- j=2 (Y='b'): no match → max(dp[3][2]=2, dp[4][1]=1) = 2
+- j=3..5: no match, carries forward as 2
+- j=6 (Y='f'): match → `dp[4][6] = 1 + dp[3][5] = 1 + 2 = 3`
 
 Final `dp[4][6] = 3` (LCS length is 3: e.g., "abf").
 

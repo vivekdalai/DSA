@@ -101,7 +101,7 @@ public class FrogJumpII {
     public static void main(String[] args) {
         int D = 21;
         int[] stones = {2, 11, 14, 17}; // 0 and D will be added automatically
-        System.out.println(minMaxJumpRoundTrip(stones, D)); // prints 10
+        System.out.println(minMaxJumpRoundTrip(stones, D)); // prints 12 (see Worked Example below)
     }
 }
 ```
