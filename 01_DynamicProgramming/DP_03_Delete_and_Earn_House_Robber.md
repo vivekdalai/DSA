@@ -166,9 +166,9 @@ class SolutionSparse {
             int gain = total.get(v);
 
             if (prevValue != null && v == prevValue + 1) {
-                int oldPrev1 = prev1;
-                prev1 = prev2 + gain;
-                prev2 = Math.max(prev2, oldPrev1);
+                int curr = prev2 + gain;
+                prev2 = Math.max(prev2, prev1);
+                prev1 = curr;
             } else {
                 int best = Math.max(prev2, prev1);
                 prev1 = best + gain;

@@ -110,6 +110,42 @@ class Solution {
 
 Complexity: Time O(n * sqrt(n)), Space O(n)
 
+**Equivalent Coin-Change-style form.** Precompute the perfect squares `<= n` into an
+array once, then run the exact coin-outer / value-inner-ascending loop from
+[Coin Change — Min Coins, 6B](DP_04_Coin_Change_Min_Coins.md). This isn't just
+similar — it's the same unbounded-knapsack-minimization algorithm, with `squares[]`
+standing in for `coins[]`. Loop order doesn't affect correctness here because this is
+a *minimization*, not a count of combinations (contrast with
+[Coin Change II](DP_04_B_Coin_Change_Number_of_Ways.md), where coin-outer order is
+required specifically to avoid double-counting permutations):
+
+```java
+import java.util.*;
+
+class SolutionCoinChangeStyle {
+    public int numSquares(int n) {
+        List<Integer> squares = new ArrayList<>();
+        for (int j = 1; j * j <= n; j++) squares.add(j * j);
+
+        int[] dp = new int[n + 1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+
+        for (int sq : squares) {
+            for (int v = sq; v <= n; v++) {
+                if (dp[v - sq] != Integer.MAX_VALUE) {
+                    dp[v] = Math.min(dp[v], dp[v - sq] + 1);
+                }
+            }
+        }
+        return dp[n];
+    }
+}
+```
+
+Complexity: Time O(n * sqrt(n)) (same as above — precomputing `squares[]` costs only
+O(sqrt(n))), Space O(n + sqrt(n))
+
 ------------------------------------------------------------------------
 
 ## 🔎 7. Full Dry Run Example
