@@ -61,6 +61,16 @@ The first six above (ranked #1–4 plus the two "also reported" picks) are fully
 up in this folder now. The rest are listed so nothing gets lost — say the word and any
 of them can get the same treatment.
 
+## Video-sourced note
+
+- **Design Uber** — ✅ [07_Design_Uber.md](07_Design_Uber.md) — not from the ranked-
+  reports research above; built from a [video
+  walkthrough](https://www.youtube.com/watch?v=lsKU38RKQSo) (Hello Interview),
+  following its own structure and diagrams. Asked heavily at Amazon, Google, and
+  Meta, and it's the reference proximity-search problem — the Quad-Tree-vs-
+  Geohashing tradeoff it covers generalizes directly to Yelp, Find My Friends, and
+  similar problems.
+
 ---
 
 ## How each note in this folder is structured

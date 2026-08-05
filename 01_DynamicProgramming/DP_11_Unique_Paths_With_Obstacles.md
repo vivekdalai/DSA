@@ -75,7 +75,7 @@ class UniquePathsObstaclesMemo {
         this.grid = obstacleGrid;
         int m = grid.length, n = grid[0].length;
 
-        if (isBlocked(0, 0) || isBlocked(m - 1, n - 1)) return 0;
+        if (isBlocked(0, 0) || isBlocked(m - 1, n - 1)) return 0;  // check if source or destination is unreachable
 
         memo = new Integer[m][n];
         return dfs(m - 1, n - 1);

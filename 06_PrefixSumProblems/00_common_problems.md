@@ -54,6 +54,9 @@ Typical map meanings:
 5. [05_MaxLengthEqual0And1.md](./05_MaxLengthEqual0And1.md)
    Find the maximum length subarray with equal number of `0` and `1`
 
+6. [06_RangeFlipDifferenceArray.md](./06_RangeFlipDifferenceArray.md)
+   Apply many range-flip queries efficiently using a difference array
+
 ------------------------------------------------------------------------
 
 ## 4. Recognition Hints
