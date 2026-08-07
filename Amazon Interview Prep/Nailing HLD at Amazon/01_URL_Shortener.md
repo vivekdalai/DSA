@@ -319,6 +319,47 @@ custom alias?**
 
 ## Deep Dives (Q&A)
 
+**Q: How do you guarantee a redirect lookup is fast at billions of rows — you're not
+scanning the table on every request, right?**
+
+Correct — a scan would be an O(N) operation and would collapse the instant the table
+crossed a few million rows, let alone billions. Redirect speed at this scale comes
+from three independent layers stacking on top of each other, each of which turns the
+lookup into O(1) or O(log N), never O(N):
+
+1. **The data model is a keyed point lookup by construction, not a scan.**
+   `shortCode` is the *partition/primary key* of the store chosen in Step 2 — a
+   DynamoDB `GetItem` on partition key resolves via a hash index in O(1), or (for the
+   relational alternative) a B-tree index on `shortCode` resolves in O(log N) —
+   either way, directly to the one row, regardless of how many other rows exist. This
+   is why "what's the access pattern" gets asked before "which database": the mapping
+   problem is a keyed lookup by design, so the only real database decision is which
+   index backs that key, never a query that has to inspect unrelated rows. Contrast
+   this explicitly with a *different* access pattern like "list all URLs created by
+   this user" — that needs a secondary index (e.g. a DynamoDB GSI on `createdBy`),
+   because it's not a lookup by primary key anymore; the redirect path itself never
+   needs one.
+2. **Partitioning routes straight to the one node that owns the key.** At billions of
+   rows the table is sharded via consistent hashing (see
+   [`../../HLD/Key_Value_Store.md`](../../HLD/Key_Value_Store.md)) — a coordinator
+   computes `hash(shortCode)` and routes directly to the single partition responsible
+   for it. The request never "searches" across nodes. Growing from 1M to 1B rows adds
+   more partitions to spread load across, not more work per individual lookup — total
+   data size and per-request latency are decoupled.
+3. **Caching removes the database from the path almost entirely.** Steps 4–5 already
+   layer an app-tier cache (Redis/ElastiCache) in front of the DB, then a CDN/edge
+   cache in front of that. Given the stated 100:1+ read:write ratio, the large
+   majority of redirects are served straight from RAM at the edge or in the cache tier
+   and never reach the partitioned lookup at all. Layer 3 is what makes "fast" the
+   common case; layers 1–2 are what bound the worst case — a full cache miss — to
+   O(1)/O(log N) instead of degrading as the dataset grows.
+
+The punchline to state explicitly if pushed: *"redirect latency doesn't grow with
+total URL count, because every layer — edge cache, app cache, and the underlying
+store's index/partitioning — resolves one specific key directly instead of searching.
+Table size only matters for things like backups or analytics jobs, never for the
+redirect read path."*
+
 **Q: Why base62 encoding instead of a raw decimal counter or a UUID?**
 
 Base62 (`0-9A-Za-z`) packs more information per character than decimal, so the same

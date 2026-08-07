@@ -81,11 +81,11 @@ class FindAllAnagramsInString {
         if (matches(need, window)) result.add(0);
 
         for (int right = m; right < n; right++) {
-            window[s.charAt(right) - 'a']++;
-            window[s.charAt(right - m) - 'a']--;
+            window[s.charAt(right) - 'a']++;  // window-right end
+            window[s.charAt(right - m) - 'a']--; // window-left end
 
             if (matches(need, window)) {
-                result.add(right - m + 1);
+                result.add(right - m + 1); //window start index
             }
         }
 

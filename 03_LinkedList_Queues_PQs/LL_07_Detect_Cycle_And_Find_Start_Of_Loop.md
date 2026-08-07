@@ -39,36 +39,64 @@ Then:
 
 ------------------------------------------------------------------------
 
-## 🔁 3. Why the Meeting Happens
+## 🔁 3. Why the Meeting Happens (Mathematical Derivation)
 
-Inside the loop:
-- `slow` moves by 1 step
-- `fast` moves by 2 steps
-- so in every iteration, the distance between them decreases by 1
-- because this distance keeps shrinking inside a finite cycle, it must eventually become 0
-- once the distance becomes 0, `slow` and `fast` collide
-
-Why resetting works for the loop start:
+### 3.1 Setup
 
 Let:
-- `L` = distance from head to loop start
-- `d` = distance from loop start to collision point
-- `C` = cycle length
+- `L` = distance (number of nodes) from `head` to the loop start
+- `C` = length of the cycle (number of nodes in it), `C ≥ 1`
+- `slow` moves 1 step/iteration, `fast` moves 2 steps/iteration
 
-At collision:
-- slow traveled `L + d`
-- fast traveled `2(L + d)`
+### 3.2 Proof that they are *guaranteed* to meet
 
-Difference is a multiple of cycle length:
-- `2(L + d) - (L + d) = kC`
-- so `L + d = kC`
-- therefore `L = kC - d`
+**Step 1 — both pointers are inside the cycle after `L` steps of `slow`.**
+`slow` reaches the loop start after exactly `L` steps. At that same moment `fast` has taken `2L` steps, and since `fast` is always at least as far along the list as `slow`, it has already entered the cycle. Measure position *from the loop start, mod `C`*:
+```
+pos_slow = 0
+pos_fast = 2L mod C
+```
 
-That means:
-- one pointer from head
-- one pointer from collision point
-- both moving one step at a time
-will meet at the loop start
+**Step 2 — the gap changes by exactly 1 every iteration.**
+Define `gap = (pos_fast - pos_slow) mod C`. Once both pointers are inside the cycle, each iteration:
+```
+pos_slow += 1   (mod C)
+pos_fast += 2   (mod C)
+=> gap  += 1    (mod C)
+```
+This is just the relative speed: `fast` gains on `slow` at a constant rate of `2 - 1 = 1` node per iteration. This is the precise meaning of "the distance between them shrinks by 1 each iteration" — really, the gap fast needs to close (going around the loop to catch slow from behind) decreases by 1 per step.
+
+**Step 3 — a strictly-monotonic counter mod a finite `C` must hit 0.**
+`gap` takes the values `gap₀, gap₀+1, gap₀+2, …` reduced mod `C`. Since `C` is finite, this sequence must pass through `0` within at most `C` steps (pigeonhole — you can't add 1 forever mod `C` without wrapping back to 0). When `gap = 0`, `pos_fast = pos_slow`, i.e. they are on the same node → **they collide.**
+
+So the meeting isn't a coincidence — it's forced by two facts: (1) relative speed is a nonzero constant (1 node/iteration), and (2) the cycle is finite, so a constantly-changing position mod `C` cannot avoid returning to the starting offset. Total steps until collision is bounded by `L + C`.
+
+### 3.3 Proof that resetting to `head` lands exactly on the loop start
+
+At the moment of collision:
+- `slow` has traveled `L + d`, where `d` = distance from loop start to the collision point (`0 ≤ d < C`)
+- `fast` has traveled `2(L + d)` (it always moves exactly twice slow's step count)
+
+The extra distance `fast` covered is entirely made up of whole laps of the cycle (that's the only way two same-speed-ratio walkers on a loop can coincide again):
+```
+2(L + d) - (L + d) = kC      for some integer k ≥ 1
+L + d = kC
+L = kC - d                    ... (*)
+```
+
+Now place `p1` at `head` and `p2` at the collision point, and move both one step at a time.
+
+- `p1` needs exactly `L` steps to reach the loop start (by definition of `L`), and for all `t < L`, `p1` is still on the acyclic "tail" leading into the loop — it has **not** touched the cycle yet.
+- `p2` is always inside the cycle. After `L` steps its position (measured from loop start, mod `C`) is:
+```
+d + L  (mod C)  =  d + (kC - d)  (mod C)      [substitute (*)]
+               =  kC (mod C) = 0
+```
+  i.e. `p2` is back exactly at the loop start after `L` steps.
+
+Since `p1` reaches the loop start for the first time at step `L`, and `p2` also lands on the loop start at step `L`, they meet there — and they **cannot** have met any earlier, because for `t < L`, `p1` isn't in the cycle at all while `p2` always is, so they occupy disjoint sets of nodes until `t = L`.
+
+**Conclusion:** moving one pointer from `head` and one from the collision point, one step at a time, they meet for the first time exactly at the loop start.
 
 ------------------------------------------------------------------------
 
