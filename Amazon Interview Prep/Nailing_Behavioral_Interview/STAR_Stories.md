@@ -162,3 +162,55 @@ proves genuine invention rather than just picking a known pattern off a shelf.
   custom orchestration, at the cost of a network hop on every read; the local-cache +
   headless-service-broadcast approach keeps reads in-process (hence the 2ms number) at the
   cost of the orchestration complexity you built.
+
+------------------------------------------------------------------------
+
+## Story 3: Automating CSV-Compatible ETL Migration to FRCDP
+
+**Primary LP:** [Customer Obsession](Leadership_Principles.md#1-customer-obsession)
+**Secondary LPs:** [Ownership](Leadership_Principles.md#2-ownership),
+[Invent and Simplify](Leadership_Principles.md#3-invent-and-simplify),
+[Insist on the Highest Standards](Leadership_Principles.md#7-insist-on-the-highest-standards)
+
+---
+
+**Situation:** Customers migrating ETL data-loading workloads to FRCDP needed to retain
+their established CSV file formats. Requiring them to change file layouts would have added
+cost, delayed migration, and risked disrupting downstream processes that depended on their
+existing file patterns and column mappings.
+
+**Task:** I owned building an automated migration capability that could create the required
+EDDs and connector configurations from existing stage-table metadata, while validating that
+the source schema was compatible with the corresponding FRCDP connector entities before
+deployment.
+
+**Action:** I developed the EDD and Connector services and integrated them into one FRCDP
+migration workflow. The workflow generated EDD and connector payloads from versioned
+configuration and source table metadata, preserving each customer's existing file patterns
+and column mappings.
+
+I added a compatibility layer that compared source-stage attributes with FRCDP connector
+entities before submitting configurations to DSA APIs, so schema mismatches could be found
+before deployment instead of becoming production data-loading failures. I also built the
+operational safeguards required for a migration workflow: prerequisite validation,
+idempotent handling for safe re-runs, detailed audit records, per-table success/failure
+reporting, and batch-context logging for end-to-end traceability.
+
+**Result:** Customers could migrate their ETL data-loading processes to FRCDP without
+changing their existing CSV files. The workflow automated EDD and connector creation,
+surfaced schema incompatibilities before deployment, supported safe retries, and gave
+operators clear visibility into the outcome of every EDD and connector migration.
+
+**What I'd do differently:** I would add a pre-migration compatibility report that teams
+could review before starting a batch, so they could resolve all known schema exceptions in
+advance instead of discovering them table by table during execution.
+
+**Likely follow-ups to be ready for:**
+- "How did you define compatibility between a stage table and a connector entity?" Be
+  ready to describe the exact attributes you validated, such as column names, types,
+  nullability, order, or mandatory FRCDP fields.
+- "What made a re-run idempotent?" Explain how the workflow identified configurations
+  already created or safely retried only incomplete or failed tables.
+- "How did you handle a partially successful batch?" Describe how per-table status, audit
+  records, and batch-context logs allowed an operator to isolate and retry failures without
+  repeating successful work.
