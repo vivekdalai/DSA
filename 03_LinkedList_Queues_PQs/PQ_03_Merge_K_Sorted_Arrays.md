@@ -131,7 +131,7 @@ Notice the heap size never exceeds `k = 3` at any point — that's the whole ben
 - **Time:** `O(n log k)` — `n` = total elements across all arrays, each pushed and popped once from a heap of size at most `k`.
 - **Space:** `O(k)` for the heap, `O(n)` for the result.
 
-Compare to the naive approach (flatten all `n` elements, then `Arrays.sort`): that's `O(n log n)`. The heap approach wins whenever `k` (number of arrays) is much smaller than `n` (total elements) — same trade-off documented in `L_759_Employee_Free_Time`'s Approach 2 and used again in `PQ_02_Minimum_Interval_To_Include_Each_Query`.
+Compare to the naive approach (flatten all `n` elements, then `Arrays.sort`): that's `O(n log n)`. The heap approach wins whenever `k` (number of arrays) is much smaller than `n` (total elements) — same trade-off documented in `PQ_04_Employee_Free_Time`'s Approach 2 and used again in `PQ_02_Minimum_Interval_To_Include_Each_Query`.
 
 ---
 

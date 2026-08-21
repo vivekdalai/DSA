@@ -1,14 +1,14 @@
-# Greedy Notes
+# Priority Queue Notes
 
-## Employee Free Time
+## 04 - Employee Free Time
 
-**Generated on:** 2026-08-20
-
-------------------------------------------------------------------------
+Problem: LeetCode 759 - Employee Free Time
 
 <!-- leetcode-link-start -->
 **LeetCode Link:** https://leetcode.com/problems/employee-free-time/description/
 <!-- leetcode-link-end -->
+
+---
 
 ## 1. LeetCode Question Statement
 
@@ -25,7 +25,7 @@ Return the list of finite intervals representing **common, positive-length free 
 
 Explanation: There are a total of three employees, and all common free time intervals would be `[-inf, 1]`, `[3, 4]`, `[10, inf]`. We discard any intervals that contain `inf` as they aren't finite.
 
-------------------------------------------------------------------------
+---
 
 ## 2. Insight
 
@@ -40,7 +40,7 @@ So the trick is:
 
 This reduces "free time across N employees" to "merge intervals, then read off the gaps," the same greedy sweep used in `L_435_Non_Overlapping_Intervals` and `L_452_Minimum_Number_Of_Arrows_To_Burst_Balloons`.
 
-------------------------------------------------------------------------
+---
 
 ## 3. File Logic
 
@@ -52,7 +52,7 @@ This reduces "free time across N employees" to "merge intervals, then read off t
 
 Note: this assumes `schedule` (and therefore the flattened `intervals`) is non-empty, since the code reads `intervals.get(0)` before the loop starts — that matches LeetCode's constraints for this problem (each employee has at least one interval).
 
-------------------------------------------------------------------------
+---
 
 ## 4. Dry Run
 
@@ -82,7 +82,7 @@ Result:
 
 which matches the expected output.
 
-------------------------------------------------------------------------
+---
 
 ## 5. Approach 1: Sort + Merge Sweep (Clean Interview Version)
 
@@ -125,13 +125,13 @@ class Solution {
 }
 ```
 
-------------------------------------------------------------------------
+---
 
 ## 6. Approach 2: Min-Heap K-Way Merge
 
 Approach 1 flattens and fully sorts *every* interval up front — `O(n log n)`.
 
-But each employee's own list is **already sorted**. That's exactly the setup for a **k-way merge**: instead of sorting everything, keep one "pointer" per employee and repeatedly pull the globally-smallest next interval using a min-heap of size `k` (number of employees), the same idea as merging `k` sorted linked lists.
+But each employee's own list is **already sorted**. That's exactly the setup for a **k-way merge**: instead of sorting everything, keep one "pointer" per employee and repeatedly pull the globally-smallest next interval using a min-heap of size `k` (number of employees), the same idea as merging `k` sorted linked lists — see `PQ_03_Merge_K_Sorted_Arrays`.
 
 Idea:
 
@@ -145,7 +145,7 @@ Idea:
 
 This never materializes the flattened, fully-sorted list that Approach 1 builds; it only ever holds `k` candidates at a time.
 
-------------------------------------------------------------------------
+---
 
 ## 7. Approach 2: Code
 
@@ -201,7 +201,7 @@ class Solution {
 
 Note: `new PriorityQueue<>((a, b) -> schedule.get(a[0]).get(a[1]).start - schedule.get(b[0]).get(b[1]).start)` subtracts raw `int`s for the comparator instead of `Integer.compare(...)`. That's fine here since `Interval.start` values are small/bounded LeetCode inputs, but it can silently overflow for arbitrary `int` inputs near `Integer.MIN_VALUE`/`MAX_VALUE` — `Integer.compare` is the safer habit.
 
-------------------------------------------------------------------------
+---
 
 ## 8. Approach 2: Dry Run
 
@@ -230,7 +230,7 @@ Result:
 
 Same answer as Approach 1, reached without ever fully sorting the flattened interval list.
 
-------------------------------------------------------------------------
+---
 
 ## 9. Complexity And Pattern (Both Approaches)
 
@@ -250,6 +250,6 @@ Pattern:
 - gaps *between* merged blocks are the actual answer, not the merged blocks themselves — the inverse of the usual "merge intervals" output
 - when each source list is already sorted, prefer a **k-way merge via min-heap** over sorting everything from scratch — same trade-off as "merge k sorted lists"
 
-------------------------------------------------------------------------
+---
 
 ## End of Notes
